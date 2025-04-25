@@ -1,0 +1,10 @@
+canvas {
+    width: 110%;
+    height: 90%;
+}
+body {
+    background-color: lightblue
+}
+#cvs {
+    border: 5px double gray
+}
