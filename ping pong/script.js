@@ -21,13 +21,34 @@ var paddle_left_x = 100
 var paddle_left_y = 250
 var paddle_right_x = 700
 var paddle_right_y = 250
+var i_keycode = 73
+var k_keycode = 75
 createPaddle(paddle_width, paddle_height, paddle_color, paddle_left_x, paddle_left_y)
 createPaddle(paddle_width, paddle_height, paddle_color, paddle_right_x, paddle_right_y)
 createBall(ball_x, ball_y, ball_color, ball_size)
 function animate(){
+    ctx.clearRect(0,0,canvas.width, canvas.height)
     moveBall()
     createBall(ball_x, ball_y, ball_color, ball_size)
+    createPaddle(paddle_width, paddle_height, paddle_color, paddle_left_x, paddle_left_y)
+    createPaddle(paddle_width, paddle_height, paddle_color, paddle_right_x, paddle_right_y)
     window.requestAnimationFrame(animate)
+}
+function handleKeys(event) {
+    switch(event.keyCode){
+        case up_keyCode: {
+            paddle_right_y += 5
+            break;
+        };
+        case i_keycode: {
+            paddle_left_y -= 5;
+            break;
+
+        case k_keycode: {
+            paddle_left_y -= 5;
+            break;
+       }
+    }
 }
 function createPaddle(w, h, c, x, y){
     ctx.beginPath()
@@ -40,7 +61,7 @@ function createBall(x, y, c, r){
     var path = new Path2D()
     path.arc(x, y, r, 0, 2 * Math.PI)
     path.fillStyle = c
-    ctx.fill()
+    ctx.fill(path)
 }
 function moveBall() {
     if (ball_x + x_vel > canvas.width || ball_x + x_vel < 0) {
